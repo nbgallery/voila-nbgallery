@@ -1,0 +1,6 @@
+{%- extends 'gridstack/gridstack_base.html.j2' -%}
+
+{% block html_head_css %}
+{{ resources.include_css("static/gridstack-2.0.0/gridstack.min.css") }}
+{{ super() }}
+{% endblock html_head_css %}
