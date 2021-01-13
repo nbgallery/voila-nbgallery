@@ -2,5 +2,13 @@
 
 {% block html_head_css %}
 {{ resources.include_css("static/gridstack-2.0.0/gridstack.min.css") }}
+{{ resources.include_css("static/font-awesome-4.7.0/css/font-awesome.min.css") }}
 {{ super() }}
 {% endblock html_head_css %}
+
+{% block footer_js %}
+{{ super() }}
+<script>
+define("base/js/dialog", [], () => {});
+</script>
+{% endblock footer_js %}

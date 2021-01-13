@@ -34,4 +34,8 @@ http://localhost:8888/voila/render/font-awesome.ipynb?voila-template=offline-lab
 # Gridstack template will not display the grid properly
 http://localhost:8888/voila/render/gridstack.ipynb?voila-template=gridstack
 http://localhost:8888/voila/render/gridstack.ipynb?voila-template=offline-gridstack
+
+# All three in one
+http://localhost:8888/voila/render/gridstack-plus.ipynb?voila-template=gridstack
+http://localhost:8888/voila/render/gridstack-plus.ipynb?voila-template=offline-gridstack
 ```
