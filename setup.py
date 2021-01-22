@@ -23,7 +23,8 @@ setup(
     data_files=data_files,
     include_package_data=True,
     install_requires=[
-        'voila>=0.2.1,<0.3.0',
-        'voila-gridstack==0.0.11',
+        'voila~=0.2.1',
+        'voila-gridstack~=0.1.0',
+        'voila-material~=0.4.0',
     ],
 )
