@@ -79,7 +79,7 @@
 
 
 {% block footer_js %}
-{{ super() }}
+{{ super.super() }}
 
 <script>
 
@@ -93,5 +93,33 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
+
+// copied from voila-material with added workaround for widget issue
+// https://github.com/voila-dashboards/voila-material/issues/22
+  <script type="text/javascript">
+    requirejs(['static/voila'], function(voila) {
+      (async function() {
+        var kernel = await voila.connectKernel();
+
+        // Don't try to handle comm messages
+        kernel.registerCommTarget = () => {};
+        kernel.removeCommTarget = () => {};
+        kernel._handleCommOpen = () => {};
+        kernel._handleCommClose = () => {};
+        kernel._handleCommMsg = () => {};
+
+        kernel.statusChanged.connect(() => {
+          // console.log(kernel.status);
+          var el = document.getElementById("kernel-status-icon");
+
+          if (kernel.status == 'busy') {
+            el.innerHTML = 'radio_button_checked';
+          } else {
+            el.innerHTML = 'radio_button_unchecked';
+          }
+        });
+      })();
+    });
+  </script>
 {% endblock footer_js %}
 
