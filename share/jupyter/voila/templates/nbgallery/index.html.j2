@@ -5,6 +5,7 @@
 {% set author = nbgallery.get('author', 'Unknown') %}
 {% set description = nbgallery.get('description', 'No description') %}
 {% set url = nbgallery.get('gallery_url', '') %}
+{% set nb_uuid = nbgallery.get('uuid', '') %}
 
 {%- block html_head_css -%}
 {{ super() }}
@@ -120,6 +121,18 @@ document.addEventListener('DOMContentLoaded', function() {
         kernel._handleCommOpen = () => {};
         kernel._handleCommClose = () => {};
         kernel._handleCommMsg = () => {};
+
+        {% if nb.metadata.kernelspec.language == 'python' and nb_uuid %}
+        console.log('Setting nbgallery uuid');
+        const future = kernel.requestExecute({ code: 'import os; os.environ["NBGALLERY_UUID"] = "{{nb_uuid}}"' });
+        // Handle iopub messages
+        future.onIOPub = msg => {
+          if (msg.header.msg_type !== 'status') {
+            console.log(msg.content);
+          }
+        };
+        await future.done;
+        {% endif %}
 
         kernel.statusChanged.connect(() => {
           // console.log(kernel.status);
