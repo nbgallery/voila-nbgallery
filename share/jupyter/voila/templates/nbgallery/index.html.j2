@@ -17,6 +17,19 @@
     background-color: var(--jp-layout-color2);
   }
 
+  /* make password inputs look like text inputs */
+  input[type=password]:not(.browser-default):disabled, input[type=password]:not(.browser-default) {
+    height: var(--jp-widgets-inline-height);
+    line-height: var(--jp-widgets-inline-height);
+    font-size: var(--jp-widgets-font-size);
+    padding: var(--jp-widgets-input-padding) calc( var(--jp-widgets-input-padding) * 2);
+    border: var(--jp-widgets-input-border-width) solid var(--jp-widgets-input-border-color);
+    background-color: var(--jp-widgets-input-background-color);
+    color: var(--jp-widgets-input-color);
+    font-size: var(--jp-widgets-font-size);
+    box-sizing: border-box;
+  }
+
   /* tweaking the navbar */
   .navbar-fixed {
     z-index: 10000;
@@ -94,8 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
-// copied from voila-material with added workaround for widget issue
-// https://github.com/voila-dashboards/voila-material/issues/22
+<!-- copied from voila-material with added workaround for widget issue -->
+<!-- https://github.com/voila-dashboards/voila-material/issues/22 -->
   <script type="text/javascript">
     requirejs(['static/voila'], function(voila) {
       (async function() {
