@@ -1,41 +1,25 @@
-# voila-offline
+# voila-nbgallery
+
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
 **Experimental work in progress - subject to change!**
 
-This project contains [Voila](https://voila.readthedocs.io/en/stable/) templates that have been patched to work better offline -- for example, on a corporate network that is isolated from the Internet by a firewall.  The patches use jinja template inheritance to add local copies of CSS and Javascript files referenced by the normal templates.  We currently have an offline version of the default Lab template and the [Gridstack](https://github.com/voila-dashboards/voila-gridstack) template.
+This project contains [Voila](https://voila.readthedocs.io/en/stable/) templates to use in offline scenarios and/or in conjunction with [nbgallery](https://github.com/nbgallery/nbgallery).  These templates use jinja template inheritance to build on top of upstream templates maintained by the [Voila project](https://github.com/voila-dashboards).
 
-## Testing
+## Templates in this package
 
-First, install voila-offline and start Voila:
-
-```
-# Install voila-offline
-pip install .
-
-# For the qgrid test notebook
-pip install qgrid pandas
-jupyter nbextension enable --py --sys-prefix qgrid
-
-# Voila should serve nbextensions instead of relying on CDN
-voila --port 8888 --VoilaConfiguration.enable_nbextensions=True ./notebooks
-```
-
-Next, **turn off your internet**, then compare the following URLs:
-
-```
-# Qgrid widget will not appear with default template
-http://localhost:8888/voila/render/qgrid.ipynb
-http://localhost:8888/voila/render/qgrid.ipynb?voila-template=offline-lab
-
-# Font-awesome button icons will not appear with default template
-http://localhost:8888/voila/render/font-awesome.ipynb
-http://localhost:8888/voila/render/font-awesome.ipynb?voila-template=offline-lab
-
-# Gridstack template will not display the grid properly
-http://localhost:8888/voila/render/gridstack.ipynb?voila-template=gridstack
-http://localhost:8888/voila/render/gridstack.ipynb?voila-template=offline-gridstack
-
-# All three in one
-http://localhost:8888/voila/render/gridstack-plus.ipynb?voila-template=gridstack
-http://localhost:8888/voila/render/gridstack-plus.ipynb?voila-template=offline-gridstack
-```
+ * **offline-lab** - Voila's default template, patched to work offline (nothing nbgallery-specific)
+   * Patch for using [Qgrid](https://github.com/quantopian/qgrid) in conjunction with `enable_nbextensions=True` ([voila#72](https://github.com/voila-dashboards/voila/issues/72))
+   * Local copy of font-awesome stylesheet ([voila#539](https://github.com/voila-dashboards/voila/issues/539))
+ * **offline-gridstack** - [voila-gridstack](https://github.com/voila-dashboards/voila-gridstack) template, patched to work offline (nothing nbgallery-specific)
+   * Qgrid and font-awesome patches as above
+   * Local copy of gridstack javascript and stylesheet ([voila-gridstack#26](https://github.com/voila-dashboards/voila-gridstack/issues/26))
+ * **nbgallery-material** - Prototype nbgallery template based on [voila-material](https://github.com/voila-dashboards/voila-material)
+   * Qgrid and font-awesome patches as above
+   * Workaround for javascript widget error ([voila-material#22](https://github.com/voila-dashboards/voila-material/issues/22))
+   * Displays nbgallery metadata if present in the notebook
+     * *Note: prototype only; nbgallery doesn't currently populate all the fields used by the template.*
+   * Sets the nbgallery notebook and revision id as environment variables in the kernel - this can be used for provenance of external actions taken by the notebook
+     * *Note: this only works if Voila is running as a server extention; in standalone mode, execute requests are blocked.*
+     
+See the [notebooks](https://github.com/nbgallery/voila-nbgallery/tree/main/notebooks) directory for some examples.
