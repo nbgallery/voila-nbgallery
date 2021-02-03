@@ -11,7 +11,7 @@
     }
 
     .container {
-      padding: 1px 20px;
+      padding: 10px 20px;
     }
   </style>
 {% endblock head %}
@@ -29,12 +29,12 @@
       </nav>
     </div>
 
-    <div class="container blue-grey lighten-5">
-      <ul>
-        <li>Click to launch notebooks with Voila:</li>
+    <div class="container">
+      <ul class="collection with-header">
+        <li class="collection-header"><h6>Click to launch notebooks with Voila:</h6></li>
 
         {% if breadcrumbs|length > 1: %}
-          <li>
+          <li class="collection-item">
             <a href="{{breadcrumbs[-2][0]}}"><i class="material-icons">arrow_back</i> ..</a>
           </li>
         {% endif %}
@@ -42,7 +42,7 @@
         {% for content in contents.content %}
 
           {% if content.type == 'notebook' %}
-            <li class="bold">
+            <li class="bold collection-item">
               <a href="{{base_url}}voila/render/{{content.path}}" title="Launch dashboard"><i class="material-icons">library_books</i> {{content.name}}</a>
               <div class="right">
                 <a href="{{base_url}}voila/render/{{content.path}}?voila-template={{fallback_template}}" title="Launch with plain template"><i class="material-icons">note</i></a>
@@ -51,7 +51,7 @@
           {% endif %}
 
           {% if content.type == 'directory' %}
-            <li class="bold">
+            <li class="bold collection-item">
               <a href="{{base_url}}voila/tree/{{content.path}}"><i class="material-icons">folder</i> {{content.name}}</a>
             </li>
           {% endif %}

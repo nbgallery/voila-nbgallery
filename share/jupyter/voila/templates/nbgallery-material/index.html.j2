@@ -45,6 +45,10 @@
       padding-left: 20px;
     }
 
+    .card .card-content {
+      padding: 12px 20px 1px 20px;
+    }
+
     /* Let the notebook use the full screen width */
     .container {
       margin-left: 0px;
@@ -91,8 +95,13 @@
         <div class="nav-wrapper blue-grey darken-4">
           <a href="#" class="brand-logo">{{ title }}</a>
           <ul class="right">
-            <li><a class="dropdown-trigger" href="#!" data-target="notebook-info">&nbsp;<i class="material-icons right">info_outline</i></a></li>
-            <li><a href="#"><i class="material-icons" id="kernel-status-icon">radio_button_unchecked</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="notebook-info">&nbsp;<i class="material-icons right" title="nbgallery info">info_outline</i></a></li>
+            {% if resources.theme == 'dark' %}
+              <li><a href="?voila-theme=light"><i class="material-icons" title="Reload with light theme">brightness_5</i></a></li>
+            {% else %}
+              <li><a href="?voila-theme=dark"><i class="material-icons" title="Reload with dark theme">brightness_3</i></a></li>
+            {% endif %}
+            <li><a href="#"><i class="material-icons" id="kernel-status-icon" title="kernel idle">radio_button_unchecked</i></a></li>
           </ul>
         </div>
       </nav>
@@ -149,8 +158,10 @@
 
           if (kernel.status == 'busy') {
             el.innerHTML = 'radio_button_checked';
+            el.title = 'kernel busy';
           } else {
             el.innerHTML = 'radio_button_unchecked';
+            el.title = 'kernel idle';
           }
         });
 
