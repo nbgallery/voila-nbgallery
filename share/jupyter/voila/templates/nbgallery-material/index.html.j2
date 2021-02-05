@@ -1,5 +1,7 @@
 {%- extends 'material/index.html.j2' -%}
 
+{% set fallback_template = fallback_template or 'offline-lab' %}
+
 {% set nbgallery = nb.metadata.get('gallery', {}) %}
 {% set title = nbgallery.get('title', resources.get('metadata', {}).get('name', 'Untitled')) %}
 {% set owner_name = nbgallery.get('owner_name', '') %}
@@ -78,9 +80,7 @@
         {% if owner_name %}
           <p>Owner: <a href="{{owner_url}}">{{owner_name}}</a></p>
         {% endif %}
-        {% if description %}
-          <blockquote>{{ description }}</blockquote>
-        {% endif %}
+        <blockquote>{{ description or 'No description available.' }}</blockquote>
         {% if url %}
           <div class="card-action">
             <a target="_blank" href="{{ url }}">View in nbgallery</a>
@@ -98,8 +98,10 @@
             <li><a class="dropdown-trigger" href="#!" data-target="notebook-info">&nbsp;<i class="material-icons right" title="nbgallery info">info_outline</i></a></li>
             {% if resources.theme == 'dark' %}
               <li><a href="?voila-theme=light"><i class="material-icons" title="Reload with light theme">brightness_5</i></a></li>
+              <li><a href="?voila-theme=dark&voila-template={{fallback_template}}"><i class="material-icons" title="Reload with plain template">note</i></a></li>
             {% else %}
               <li><a href="?voila-theme=dark"><i class="material-icons" title="Reload with dark theme">brightness_3</i></a></li>
+              <li><a href="?voila-theme=light&voila-template={{fallback_template}}"><i class="material-icons" title="Reload with plain template">note</i></a></li>
             {% endif %}
             <li><a href="#"><i class="material-icons" id="kernel-status-icon" title="kernel idle">radio_button_unchecked</i></a></li>
           </ul>
