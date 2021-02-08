@@ -23,3 +23,16 @@ This project contains [Voila](https://voila.readthedocs.io/en/stable/) templates
      * *Note: this only works if Voila is running as a server extention; in standalone mode, execute requests are blocked.*
      
 See the [notebooks](https://github.com/nbgallery/voila-nbgallery/tree/main/notebooks) directory for some examples.
+
+## Installation
+
+If you plan to use only the offline-lab or nbgallery-material template:
+
+```
+pip install voila-nbgallery
+```
+We've listed [voila-gridstack](https://github.com/voila-dashboards/voila-gridstack) as an optional dependency because it includes UI extensions for both Jupyter Lab and Jupyter Notebook, and you may not want those if you're not using the gridstack template.  If you plan to use the offline-gridstack template, then install with the optional dependency:
+
+```
+pip install voila-nbgallery[gridstack]
+```
