@@ -90,8 +90,10 @@
     </div>
 
     {# Navbar #}
-    <div class="navbar-fixed">
+    <div class="navbar-fixed" style="height: 90px">
       <nav class="top-nav">
+        {% block extra_header %}
+        {% endblock extra_header %}
         <div class="nav-wrapper blue-grey darken-4">
           <a href="#" class="brand-logo">{{ title }}</a>
           <ul class="right">
@@ -167,6 +169,7 @@
           }
         });
 
+        {% block nbgallery_uuid_js %}
         {% if nb.metadata.kernelspec.language == 'python' and nb_uuid %}
         // Set nbgallery UUID in kernel environment
         console.log('Setting nbgallery uuid in kernel...');
@@ -177,10 +180,11 @@
             console.log(msg.content);
           }
         };
-        // DO NOT wait on the future; it never completes in standalone mode because
-        // execute requests are blocked.
+        // DO NOT wait on the future:
+        // Execute requests are blocked in standalone voila, so it never completes.
         // DO NOT await future.done;
         {% endif %}
+        {% endblock nbgallery_uuid_js %}
       })();
     });
   </script>
