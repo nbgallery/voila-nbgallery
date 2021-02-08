@@ -24,7 +24,9 @@ setup(
     include_package_data=True,
     install_requires=[
         'voila~=0.2.3',
-        'voila-gridstack~=0.1.0',
         'voila-material~=0.4.0',
     ],
+    extras_require= {
+        'gridstack': ['voila-gridstack~=0.1.0'],
+    },
 )
