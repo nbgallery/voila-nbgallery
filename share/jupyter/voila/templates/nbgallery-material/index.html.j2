@@ -19,14 +19,28 @@
   {{ resources.include_css("static/font-awesome-4.7.0/css/font-awesome.min.css") }}
 
   <style type="text/css">
-    /* Override materialize with ipywidget style (qgrid workaround) */
-    .btn {
+    /* Qgrid: make buttons look more like ipywidgets */
+    .q-grid-toolbar .btn {
       color: var(--jp-ui-font-color1);
-      background-color: var(--jp-layout-color2);
+      background-color: var(--jp-layout-color2) !important;
+      border-color: var(--jp-border-color2) !important;
+      font-size: var(--jp-widgets-font-size) !important;
+      height: var(--jp-widgets-inline-height);
+      line-height: var(--jp-widgets-inline-height) !important;
+      text-transform: none;
+      box-shadow: none;
+      padding: 0px 20px !important;
+    }
+
+    /* Qgrid: make filter checkboxes visible */
+    .check-box-cell input[type=checkbox]:checked, .check-box-cell input[type=checkbox]:not(:checked) {
+      position: relative;
+      opacity: 1;
     }
 
     /* Make Password widget look like Text widget */
-    input[type=password]:not(.browser-default):disabled, input[type=password]:not(.browser-default) {
+    input[type=password]:not(.browser-default):disabled, input[type=password]:not(.browser-default),
+    input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-default) {
       height: var(--jp-widgets-inline-height);
       line-height: var(--jp-widgets-inline-height);
       font-size: var(--jp-widgets-font-size);
