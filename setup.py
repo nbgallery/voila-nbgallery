@@ -12,18 +12,18 @@ for root, dirs, files in os.walk('share'):
         data_files.append((root, root_files))
 
 setup(
-    name='voila-nbgallery',
-    version="0.0.3",
+    name="voila-nbgallery",
+    version="0.0.4",
     description="Voila templates for nbgallery project",
-    long_description=long_description,
-    long_description_content_type='text/markdown',
-    url='https://github.com/nbgallery/voila-nbgallery',
+    long_description="Voila templates for nbgallery project",
+    long_description_content_type="text/markdown",
+    url="https://github.com/nbgallery/voila-nbgallery",
     author='https://github.com/nbgallery',
     license='MIT',
     data_files=data_files,
     include_package_data=True,
     install_requires=[
-        'voila~=0.2.3',
+        'voila>=0.2.3',
         'voila-material~=0.4.0',
     ],
     extras_require= {
