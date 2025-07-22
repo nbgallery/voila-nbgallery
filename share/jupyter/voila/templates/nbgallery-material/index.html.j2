@@ -119,11 +119,11 @@
           <ul class="right">
             <li><a class="dropdown-trigger" href="#!" data-target="notebook-info">&nbsp;<i class="material-icons right" title="nbgallery info">info_outline</i></a></li>
             {% if resources.theme == 'dark' %}
-              <li><a href="?voila-theme=light"><i class="material-icons" title="Reload with light theme">brightness_5</i></a></li>
-              <li><a href="?voila-theme=dark&voila-template={{fallback_template}}"><i class="material-icons" title="Reload with plain template">note</i></a></li>
+              <li><a href="?theme=light"><i class="material-icons" title="Reload with light theme">brightness_5</i></a></li>
+              <li><a href="?theme=dark&voila-template={{fallback_template}}"><i class="material-icons" title="Reload with plain template">note</i></a></li>
             {% else %}
-              <li><a href="?voila-theme=dark"><i class="material-icons" title="Reload with dark theme">brightness_3</i></a></li>
-              <li><a href="?voila-theme=light&voila-template={{fallback_template}}"><i class="material-icons" title="Reload with plain template">note</i></a></li>
+              <li><a href="?theme=dark"><i class="material-icons" title="Reload with dark theme">brightness_3</i></a></li>
+              <li><a href="?theme=light&voila-template={{fallback_template}}"><i class="material-icons" title="Reload with plain template">note</i></a></li>
             {% endif %}
             <li><a href="#"><i class="material-icons" id="kernel-status-icon" title="kernel idle">radio_button_unchecked</i></a></li>
           </ul>
