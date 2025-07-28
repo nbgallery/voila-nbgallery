@@ -13,7 +13,7 @@ for root, dirs, files in os.walk('share'):
 
 setup(
     name="voila-nbgallery",
-    version="0.0.5.dev0",
+    version="0.0.5",
     description="Voila templates for nbgallery project",
     long_description="Voila templates for nbgallery project",
     long_description_content_type="text/markdown",
