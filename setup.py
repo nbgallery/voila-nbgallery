@@ -13,13 +13,14 @@ for root, dirs, files in os.walk('share'):
 
 setup(
     name="voila-nbgallery",
-    version="0.0.4",
+    version="0.0.5",
     description="Voila templates for nbgallery project",
     long_description="Voila templates for nbgallery project",
     long_description_content_type="text/markdown",
     url="https://github.com/nbgallery/voila-nbgallery",
     author='https://github.com/nbgallery',
     license='MIT',
+    packages=[],
     data_files=data_files,
     include_package_data=True,
     install_requires=[
